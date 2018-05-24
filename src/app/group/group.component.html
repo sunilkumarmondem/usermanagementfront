@@ -1,0 +1,55 @@
+<div class="container pt-5">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-9">
+			<div *ngIf="!hiddenform">
+				<h3>Add GroupName</h3>
+					<form (submit)="addgroup()" >
+						
+					  <div class="form-group">
+					    <label for="name">Group Name:</label>
+					    <input type="text" [(ngModel)]="name" name="name" class="form-control" id="name" required>
+					  </div>
+					  
+					   
+					  <button type="submit" class="btn btn-success " value="submit">Submit</button>
+					  <button type="button" class="btn btn-info" (click)="cancel()">cancel</button>
+					</form>
+			</div>
+			<div *ngIf="!hiddenbutton">
+			<button type="button" class="btn btn-success" (click)="newgroup()">Add group</button>
+			</div>
+			<br>
+			<table class="table table-hover">
+			    <thead>
+			      <tr>
+			        <th>Group name</th>
+			        <th>users</th>
+			        <th>Edit</th>
+			        <th>Delete</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr *ngFor="let group of groups">
+			        <td>{{group.name}}</td>
+			        <td><a routerLink="/users/{{group.name}}" >users</a></td>
+			        <td>
+			        	
+			        	<a routerLink="/editgroup/{{group._id}}"><button type="button" class="btn btn-primary">Edit</button></a>
+			       
+			        </td>
+			        <td>
+			        	
+			        	<button type="button" class="btn btn-danger" (click)="delete(group._id)" >Delete</button>
+			        	
+			        </td>
+
+			      </tr>
+			      
+			      
+			    </tbody>
+  </table>
+
+		</div>
+	</div>
+</div>
